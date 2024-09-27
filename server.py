@@ -59,5 +59,15 @@ def start():
             clients.add(conn)
         thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()
+def send_server_messages():
+    """ Allow server to send messages to all clients from the terminal """
+    while True:
+        msg = input("Server: ")  # Get input from server terminal
+        if msg.lower() == "exit":  # Type 'exit' to stop the server
+            break
+        broadcast(f"[SERVER]: {msg}".encode(FORMAT), None)  # Broadcast to all clients, passing None for _client
+
+# Start server and server message thread
+threading.Thread(target=send_server_messages, daemon=True).start()
 
 start()

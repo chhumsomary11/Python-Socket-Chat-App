@@ -52,7 +52,7 @@ def start():
 
     # Send messages to the server
     while True:
-        msg = input("Message (q for quit): ")
+        msg = input("\nMessage (q for quit): ")
         if msg == 'q':
             break
         send(connection, msg)
